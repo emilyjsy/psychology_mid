@@ -1,0 +1,2622 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>심리학개론 중간 대비 객관식 퀴즈</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent2: #eff6ff;
+      --good: #047857;
+      --bad: #b91c1c;
+      --warn: #b45309;
+      --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background: radial-gradient(circle at top left, #e0f2fe 0, transparent 34%), var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .wrap {
+      width: min(1080px, calc(100% - 28px));
+      margin: 28px auto 48px;
+    }
+    header {
+      background: linear-gradient(135deg, #111827, #1d4ed8);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 4vw, 38px);
+      letter-spacing: -0.04em;
+    }
+    header p {
+      margin: 5px 0;
+      color: rgba(255,255,255,.86);
+    }
+    .pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 13px;
+      color: rgba(255,255,255,.92);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .controls {
+      padding: 18px;
+      position: sticky;
+      top: 12px;
+    }
+    @media (max-width: 860px) {
+      .controls { position: static; }
+    }
+    .field { margin-bottom: 14px; }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 15px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+    }
+    .checkline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 10px 0 16px;
+    }
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .14s transform, .14s background, .14s border-color, .14s color;
+      font-size: 14px;
+    }
+    button:active { transform: translateY(1px); }
+    .primary { background: var(--accent); color: white; }
+    .secondary { background: #f3f4f6; color: #111827; border: 1px solid #e5e7eb; }
+    .danger { background: #fef2f2; color: var(--bad); border: 1px solid #fecaca; }
+    .ghost { background: transparent; color: var(--accent); border: 1px solid #bfdbfe; }
+    .small { font-size: 13px; padding: 8px 10px; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .stat {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat b { display: block; font-size: 19px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    .chapterCounts {
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    .chapterCounts div {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .main {
+      padding: 22px;
+      min-height: 520px;
+    }
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+    .tag.blue { background: var(--accent2); color: #1d4ed8; border-color: #bfdbfe; }
+    .tag.red { background: #fef2f2; color: var(--bad); border-color: #fecaca; }
+    .progressbar {
+      width: 100%;
+      height: 10px;
+      background: #edf2f7;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 18px;
+    }
+    .progressbar > div {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb, #06b6d4);
+      transition: width .2s ease;
+    }
+    .question {
+      font-size: clamp(19px, 3vw, 25px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 6px 0 18px;
+      white-space: pre-wrap;
+    }
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+    .choice {
+      width: 100%;
+      text-align: left;
+      background: white;
+      border: 1.5px solid #d1d5db;
+      color: #111827;
+      padding: 14px 14px;
+      border-radius: 15px;
+      font-weight: 700;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+    .choice:hover { border-color: #93c5fd; background: #f8fbff; }
+    .choice .num {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .choice.correct {
+      border-color: #34d399;
+      background: #ecfdf5;
+      color: #064e3b;
+    }
+    .choice.correct .num { background: #d1fae5; }
+    .choice.wrong {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #7f1d1d;
+    }
+    .choice.wrong .num { background: #fee2e2; }
+    .answerBox {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    @media (max-width: 520px) {
+      .answerBox { grid-template-columns: 1fr; }
+    }
+    .feedback {
+      margin-top: 16px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: #f9fafb;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.good { border-color: #a7f3d0; background: #ecfdf5; }
+    .feedback.bad { border-color: #fecaca; background: #fff7f7; }
+    .feedback h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .feedback p { margin: 5px 0; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+    .review h2 { margin-top: 0; }
+    .reviewItem {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin: 12px 0;
+      background: #fff;
+    }
+    .reviewItem .rmeta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .correctText { color: var(--good); font-weight: 900; }
+    .wrongText { color: var(--bad); font-weight: 900; }
+    .notice {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      padding: 1px 6px;
+      border: 1px solid #d1d5db;
+      border-bottom-width: 2px;
+      border-radius: 6px;
+      background: #fff;
+      color: #111827;
+      font-weight: 700;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>심리학개론 중간 대비 객관식 퀴즈</h1>
+      <p>업로드한 강의본·요약본·필기본·기출 유형을 바탕으로 만든 기출유사 변형문제입니다.</p>
+      <p>선지를 누르거나 정답칸에 <span class="kbd">1~5</span>, <span class="kbd">a~e</span>, <span class="kbd">①~⑤</span>, <span class="kbd">ㄱ~ㅁ</span>으로 입력하면 바로 채점됩니다.</p>
+      <div class="pillrow">
+        <span class="pill">총 <b id="totalCount">0</b>문항</span>
+        <span class="pill">챕터별 학습</span>
+        <span class="pill">실전 40문항 모드</span>
+        <span class="pill">오답노트 저장</span>
+        <span class="pill">해설 즉시 표시</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <aside class="card controls">
+        <div class="field">
+          <label for="chapterSelect">챕터 선택</label>
+          <select id="chapterSelect"></select>
+        </div>
+        <div class="field">
+          <label for="modeSelect">풀이 모드</label>
+          <select id="modeSelect">
+            <option value="all">선택 챕터 전체 풀기</option>
+            <option value="quick10">선택 챕터 랜덤 10문제</option>
+            <option value="random20">선택 챕터 랜덤 20문제</option>
+            <option value="exam40">실전 모드: 전체 랜덤 40문제 / 40분</option>
+            <option value="wrong">오답노트만 다시 풀기</option>
+          </select>
+        </div>
+        <label class="checkline">
+          <input id="shuffleCheck" type="checkbox" checked />
+          문제 순서 섞기
+        </label>
+        <div class="btns">
+          <button class="primary" id="startBtn">퀴즈 시작</button>
+          <button class="secondary" id="restartBtn">현재 세트 다시</button>
+          <button class="danger" id="clearWrongBtn">오답노트 비우기</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b id="scoreStat">0</b><span>현재 점수</span></div>
+          <div class="stat"><b id="progressStat">0/0</b><span>진행</span></div>
+          <div class="stat"><b id="wrongStat">0</b><span>저장된 오답</span></div>
+          <div class="stat"><b id="timerStat">--:--</b><span>타이머</span></div>
+        </div>
+
+        <div class="notice">
+          추천 루틴: 챕터별 20문제 → 틀린 것 해설 읽기 → 오답노트만 재풀이 → 마지막에 실전 40문항.
+        </div>
+        <div class="chapterCounts" id="chapterCounts"></div>
+      </aside>
+
+      <main class="card main">
+        <div id="quizArea" class="empty">
+          왼쪽에서 챕터와 모드를 고른 뒤 <b>퀴즈 시작</b>을 눌러주세요.
+        </div>
+      </main>
+    </div>
+    <footer>문항은 학습 확인용 변형문제이며, 실제 시험 문제를 그대로 복제한 것이 아닙니다.</footer>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+  {
+    "id": "Q001",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "Aristotle의 『De Anima』 논의와 가장 가까운 마음의 이해는?",
+    "choices": [
+      "마음은 오직 대뇌피질의 전기신호만을 뜻한다.",
+      "마음은 행동을 움직이게 하는 원인으로 볼 수 있다.",
+      "마음은 관찰 불가능하므로 학문 대상이 될 수 없다.",
+      "마음은 강화계획에 의해 생긴 습관만을 뜻한다."
+    ],
+    "answer": 1,
+    "explanation": "강의 개관부의 핵심은 마음을 ‘움직임/행동의 원인’으로 생각하는 전통에서 출발한다는 점이다."
+  },
+  {
+    "id": "Q002",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "Descartes의 심신이원론에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "마음은 시냅스의 화학적 전달과 완전히 동일하다고 보았다.",
+      "정신과 물질은 완전히 같은 성질이라고 보았다.",
+      "몸은 자연과학적으로 연구 가능하지만 마음은 다른 실체라고 보았다.",
+      "행동주의 심리학의 창시자로 내성법을 제안했다."
+    ],
+    "answer": 2,
+    "explanation": "데카르트는 몸과 마음을 독립된 실체로 보는 심신이원론을 제시했다."
+  },
+  {
+    "id": "Q003",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "Wundt에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "1879년 라이프치히에 실험실을 만들고 과학적 심리학의 기초를 닦았다.",
+      "무조건자극과 조건자극의 연합을 연구했다.",
+      "반증가능성을 과학의 기준으로 제시했다.",
+      "개구리 심장 실험으로 신경전달물질을 입증했다."
+    ],
+    "answer": 0,
+    "explanation": "Wundt는 최초의 심리학 실험실, 내성법, 과학적 심리학의 출발점으로 자주 묶여 출제된다."
+  },
+  {
+    "id": "Q004",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "행동주의 심리학의 기본 태도와 가장 가까운 것은?",
+    "choices": [
+      "감각판단은 반응기준보다 민감성만으로 결정된다고 본다.",
+      "내면세계의 관찰보다 관찰 가능한 자극-반응 관계를 중시한다.",
+      "기억은 모두 장기기억으로 직접 저장된다고 본다.",
+      "심상은 마음의 눈으로 본 완전한 사진이라고 본다."
+    ],
+    "answer": 1,
+    "explanation": "행동주의는 내면을 black box로 보고 관찰 가능한 자극과 반응의 관계를 강조했다."
+  },
+  {
+    "id": "Q005",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "Turing Machine 또는 컴퓨터 은유가 심리학에 제공한 관점으로 가장 적절한 것은?",
+    "choices": [
+      "모든 심리현상을 강화계획으로만 설명하는 관점",
+      "감각기관의 역치가 존재하지 않는다는 관점",
+      "심적 표상이 존재하지 않는다는 관점",
+      "마음을 정보처리 과정으로 볼 수 있다는 관점"
+    ],
+    "answer": 3,
+    "explanation": "20세기 중반 인지심리학은 컴퓨터의 input-processing-output 은유를 통해 마음의 내부 처리 과정을 연구하려 했다."
+  },
+  {
+    "id": "Q006",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "생태학적 접근의 기본 방향으로 가장 적절한 것은?",
+    "choices": [
+      "모든 사고는 논리학의 형식 규칙으로만 설명된다고 본다.",
+      "학습에는 경험이 필요 없다고 본다.",
+      "감각기관에 들어온 자극은 항상 물리적 세계를 그대로 복사한다고 본다.",
+      "마음을 개인 내부의 표상만이 아니라 몸-환경의 관계 속에서 이해한다."
+    ],
+    "answer": 3,
+    "explanation": "생태학적 접근은 유기체가 환경 속에서 무엇을 할 수 있는지를 중시한다."
+  },
+  {
+    "id": "Q007",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "박테리아의 끌개/밀개 예시가 심리학 개관에서 사용되는 이유로 가장 적절한 것은?",
+    "choices": [
+      "인간의 기억 용량이 7±2라는 점을 입증하기 위해",
+      "고전적 조건형성에서 중성자극이 조건자극이 되는 과정을 보이기 위해",
+      "심적 회전의 반응시간 곡선을 설명하기 위해",
+      "단순 생명체도 환경의 차이에 맞춰 접근·회피 행동을 조율한다는 점을 보이기 위해"
+    ],
+    "answer": 3,
+    "explanation": "개관부에서는 마음을 환경과 행동의 조율이라는 넓은 틀에서 생각하도록 미생물 예시를 사용한다."
+  },
+  {
+    "id": "Q008",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "KEEPON이나 PARO 같은 로봇 예시가 제기하는 질문으로 가장 적절한 것은?",
+    "choices": [
+      "상황에 맞는 움직임만으로도 마음이 있는 것처럼 보일 수 있는가?",
+      "감각기억의 파지기간은 정확히 몇 초인가?",
+      "Fechner 법칙의 수식은 무엇인가?",
+      "신경전달물질은 어떤 화학물질인가?"
+    ],
+    "answer": 0,
+    "explanation": "간단한 움직임이라도 환경상태에 맞게 나타나면 마음/행위의 문제를 제기할 수 있다."
+  },
+  {
+    "id": "Q009",
+    "chapter": "개관",
+    "difficulty": "기출유사",
+    "question": "내성법(introspection)의 한계로 가장 적절한 것은?",
+    "choices": [
+      "관찰 가능한 행동만을 측정했기 때문에 내면을 전혀 다루지 않았다.",
+      "강화계획을 네 가지로 구분하지 못했다.",
+      "신호탐지이론을 반박하지 못했다.",
+      "실험실마다 보고가 달라 객관성 문제가 제기되었다."
+    ],
+    "answer": 3,
+    "explanation": "Wundt식 내성법은 역사적으로 중요하지만, 객관성과 재현성 문제로 행동주의의 비판을 받았다."
+  },
+  {
+    "id": "Q010",
+    "chapter": "개관",
+    "difficulty": "개념확인",
+    "question": "‘심리학은 마음과 행동을 연구한다’는 말에 대한 현대적 확장으로 가장 적절한 것은?",
+    "choices": [
+      "심리학은 뇌를 다루면 안 된다.",
+      "마음과 행동을 신체, 환경, 진화적 적응까지 포함해 탐구할 수 있다.",
+      "심리학은 객관식 시험처럼 개념 암기만을 대상으로 한다.",
+      "심리학은 오직 의식의 언어보고만 연구해야 한다."
+    ],
+    "answer": 1,
+    "explanation": "강의 개관은 마음·행동을 생물학적, 환경적, 진화적 맥락까지 넓혀서 본다."
+  },
+  {
+    "id": "Q011",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "섬광기억(flashbulb memory)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "운동기술처럼 의식 없이 수행되는 기억이다.",
+      "시각 감각기관에 250ms 정도 남는 기억만을 뜻한다.",
+      "장기기억에서 완전히 사라진 정보를 의미한다.",
+      "큰 사건에 대한 선명한 기억이지만 시간이 지나며 오류가 섞일 수 있다."
+    ],
+    "answer": 3,
+    "explanation": "섬광기억은 생생함과 정확성이 동일하지 않다는 점이 핵심이다."
+  },
+  {
+    "id": "Q012",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "회상(recall)에 해당하는 예로 가장 적절한 것은?",
+    "choices": [
+      "단서 없이 중학교 담임선생님의 이름을 떠올린다.",
+      "문장을 보고 빈칸에 들어갈 단어를 고른다.",
+      "처음 보는 얼굴이 익숙하다고 느낀다.",
+      "자전거를 타는 동작을 자동적으로 수행한다."
+    ],
+    "answer": 0,
+    "explanation": "회상은 과거 정보를 현재 의식으로 불러오는 행위이고, 재인은 현재 대상을 알아보는 행위다."
+  },
+  {
+    "id": "Q013",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "재인(recognition)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "현재의 대상을 과거 기억에 근거해 알아보는 과정이다.",
+      "감각기억이 장기기억으로 직접 전이되는 과정이다.",
+      "순행성 기억상실의 반대말이다.",
+      "항상 의식적 노력 없이 일어나는 암묵기억만을 뜻한다."
+    ],
+    "answer": 0,
+    "explanation": "재인은 과거와 현재를 연결해 ‘이것을 안다’고 판단하는 기억 행위다."
+  },
+  {
+    "id": "Q014",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "전통적 세 저장소 모형의 순서로 가장 적절한 것은?",
+    "choices": [
+      "장기기억 → 감각기억 → 단기기억",
+      "감각기억 → 단기기억 → 장기기억",
+      "단기기억 → 감각기억 → 장기기억",
+      "작업기억 → 감각기억 → 명시기억"
+    ],
+    "answer": 1,
+    "explanation": "Atkinson & Shiffrin식 모형에서는 외부 자극이 감각기억, 선택적 주의를 거쳐 단기기억, 암송 등을 거쳐 장기기억으로 이동한다고 본다."
+  },
+  {
+    "id": "Q015",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "단기기억에 대한 전통적 설명으로 가장 적절한 것은?",
+    "choices": [
+      "감각양식에 따라 영사기억과 잔향기억으로 나뉜다.",
+      "파지기간은 짧고 용량은 대략 7±2로 제한된다.",
+      "선택적 주의 이전 단계에 위치한다.",
+      "용량은 무한대이며 평생 유지된다."
+    ],
+    "answer": 1,
+    "explanation": "단기기억은 제한된 용량과 짧은 파지기간으로 특징지어진다."
+  },
+  {
+    "id": "Q016",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "Sperling의 부분보고 실험이 보여준 것은?",
+    "choices": [
+      "장기기억은 항상 왜곡 없이 보존된다.",
+      "시각 감각기억에는 순간적으로 많은 정보가 들어오지만 빠르게 사라진다.",
+      "반응 이후 결과가 행동을 강화한다.",
+      "심적 회전은 지각 회전과 등가적이다."
+    ],
+    "answer": 1,
+    "explanation": "전체보고는 적게 보고되지만 부분보고는 순간적 저장량이 더 큼을 시사한다."
+  },
+  {
+    "id": "Q017",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "Darwin 등의 잔향기억 연구에 대한 설명으로 적절한 것은?",
+    "choices": [
+      "청각적 감각기억은 시각적 영사기억보다 상대적으로 오래 지속될 수 있다.",
+      "시각 단서가 주어지면 청각 정보는 전혀 보고되지 않는다.",
+      "단서 지연은 감각기억 연구와 무관하다.",
+      "청각기억은 장기기억의 한 종류이다."
+    ],
+    "answer": 0,
+    "explanation": "Neisser식 정리에서 영사기억은 매우 짧고, 잔향기억은 상대적으로 더 오래 유지된다."
+  },
+  {
+    "id": "Q018",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "계열위치효과(serial position effect)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "단어 의미를 깊게 처리할수록 기억이 좋아지는 현상이다.",
+      "무조건자극과 조건자극의 시간적 근접성 효과이다.",
+      "제시 순서에 따라 회상률이 달라지는 현상이다.",
+      "동일한 노래를 다른 사람이 불러도 같은 노래로 듣는 현상이다."
+    ],
+    "answer": 2,
+    "explanation": "초두효과와 최신효과를 포함하는 U자형 회상 패턴을 계열위치효과라고 한다."
+  },
+  {
+    "id": "Q019",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "초두효과와 최신효과에 대한 설명으로 적절한 것은?",
+    "choices": [
+      "초두효과는 회상 전 방해과제에 의해 더 강해진다.",
+      "초두효과는 장기기억, 최신효과는 단기기억과 관련된다.",
+      "초두효과와 최신효과 모두 신호탐지이론의 예이다.",
+      "초두효과는 감각기억, 최신효과는 암묵기억과 관련된다."
+    ],
+    "answer": 1,
+    "explanation": "앞쪽 항목은 암송 기회로 장기기억화되기 쉽고, 뒤쪽 항목은 단기기억에 남아 회상되기 쉽다."
+  },
+  {
+    "id": "Q020",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "회상 직전 30초 동안 복잡한 계산을 시키면 주로 약화되는 효과는?",
+    "choices": [
+      "최신효과",
+      "점화효과",
+      "초두효과",
+      "전형성 효과"
+    ],
+    "answer": 0,
+    "explanation": "방해과제는 단기기억에 남아 있던 최근 항목을 밀어내므로 최신효과를 감소시킨다."
+  },
+  {
+    "id": "Q021",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "단어 제시 속도를 빠르게 하면 초두효과가 줄어드는 이유로 가장 적절한 것은?",
+    "choices": [
+      "초반 단어를 암송할 기회가 줄어들기 때문이다.",
+      "장기기억에서 인출 맥락이 동일해지기 때문이다.",
+      "수렴각이 감소하기 때문이다.",
+      "감각기억의 용량이 무한대가 되기 때문이다."
+    ],
+    "answer": 0,
+    "explanation": "초두효과는 암송을 통한 장기기억 전이와 관련되므로 암송 기회가 줄면 약화된다."
+  },
+  {
+    "id": "Q022",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "순행성 기억상실증에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "손상 이후의 새로운 경험을 장기기억으로 형성하는 데 어려움이 있다.",
+      "암묵기억이 명시기억보다 더 선명해지는 현상이다.",
+      "손상 이전의 기억만 모두 사라지는 현상이다.",
+      "감각기관에 들어온 정보가 250ms 안에 소멸되는 현상이다."
+    ],
+    "answer": 0,
+    "explanation": "순행성 기억상실은 손상 이후의 새 기억 형성이 곤란한 상태로 H.M. 사례가 대표적이다."
+  },
+  {
+    "id": "Q023",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "H.M. 사례가 시사하는 바로 가장 적절한 것은?",
+    "choices": [
+      "해마가 단기기억과 장기기억의 연결 또는 새로운 장기기억 형성에 중요하다.",
+      "시상 손상이 항상 모든 기억을 완전히 제거한다.",
+      "작업기억에는 중앙집행부가 없다.",
+      "감각기억은 해마에 저장된다."
+    ],
+    "answer": 0,
+    "explanation": "H.M.은 해마 제거 후 새로운 장기기억 형성에 심각한 어려움을 보였다."
+  },
+  {
+    "id": "Q024",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "Korsakoff syndrome에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "심적 회전 실험에서 나타나는 반응시간 증가 현상이다.",
+      "알코올 중독과 관련될 수 있으며 순행성/역행성 기억장애가 나타날 수 있다.",
+      "망막상이 상하좌우 역전되는 현상이다.",
+      "고전적 조건형성에서 CS와 US가 연합되는 과정이다."
+    ],
+    "answer": 1,
+    "explanation": "Korsakoff 증후군은 알코올 중독, 시상 영역, 기억장애와 함께 정리된다."
+  },
+  {
+    "id": "Q025",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "유지적 되뇌기(maintenance rehearsal)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "단순 반복만으로는 장기기억 전이가 보장되지 않는다.",
+      "암묵기억만을 형성한다.",
+      "단기기억이 하역대가 아니라 감각기관이라는 증거다.",
+      "의미 처리보다 항상 기억을 더 강하게 만든다."
+    ],
+    "answer": 0,
+    "explanation": "강의에서는 단순한 암송보다 의미 있는 처리와 재부호화가 중요하다는 흐름으로 넘어간다."
+  },
+  {
+    "id": "Q026",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "처리수준이론이 예측하는 가장 높은 재인율 조건은?",
+    "choices": [
+      "단어의 글자 수만 세는 조건",
+      "단어가 대문자인지 판단하는 조건",
+      "단어가 화면 중앙에 있는지만 판단하는 조건",
+      "단어가 문장 의미에 적절한지 판단하는 조건"
+    ],
+    "answer": 3,
+    "explanation": "Craik & Tulving식 실험에서 의미 처리처럼 깊은 처리가 기억을 향상시킨다."
+  },
+  {
+    "id": "Q027",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "작업기억 개념의 핵심 변화로 적절한 것은?",
+    "choices": [
+      "단기기억을 감각기억보다 더 짧은 저장소로 본다.",
+      "단기기억을 수동적 저장소가 아니라 능동적 처리공간으로 본다.",
+      "모든 기억을 무조건 암묵기억으로 본다.",
+      "장기기억을 완전히 부정한다."
+    ],
+    "answer": 1,
+    "explanation": "작업기억은 구조적 저장소보다 처리, 재부호화, 조작을 강조한다."
+  },
+  {
+    "id": "Q028",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "Baddeley식 작업기억 모형의 부속체계에 해당하는 것은?",
+    "choices": [
+      "해마와 시상",
+      "발성 고리와 시공간 그림판",
+      "전경과 배경",
+      "수렴과 양안부등"
+    ],
+    "answer": 1,
+    "explanation": "작업기억은 중앙집행부와 발성 고리, 시공간 그림판, 일화적 완충장치 등으로 설명된다."
+  },
+  {
+    "id": "Q029",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "발성 고리(phonological loop)의 기능과 가장 가까운 것은?",
+    "choices": [
+      "시각적 위치 정보를 통합한다.",
+      "신호탐지의 반응기준을 낮춘다.",
+      "언어 재료를 되뇌며 유지한다.",
+      "공포반응을 조건형성한다."
+    ],
+    "answer": 2,
+    "explanation": "발성 고리는 언어적/음운적 정보를 암송하는 부속체계다."
+  },
+  {
+    "id": "Q030",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "시공간 그림판(visuospatial sketchpad)에 대한 설명으로 적절한 것은?",
+    "choices": [
+      "무조건자극과 조건자극을 연합한다.",
+      "이미지나 공간 정보를 일시적으로 유지하고 조작한다.",
+      "신경전달물질을 분비한다.",
+      "확증편향을 줄이기 위해 반증사례를 찾는다."
+    ],
+    "answer": 1,
+    "explanation": "시공간 그림판은 시각 심상과 공간 정보 처리를 담당한다."
+  },
+  {
+    "id": "Q031",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "의미기억의 위계망 모형을 검토하는 대표적 과제는?",
+    "choices": [
+      "심적 회전 과제",
+      "문장 진위 판단 과제",
+      "개구리 심장 실험",
+      "공포 조건형성 과제"
+    ],
+    "answer": 1,
+    "explanation": "‘카나리아는 새이다’와 같은 문장의 판단시간을 통해 의미망 구조를 추론한다."
+  },
+  {
+    "id": "Q032",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "활성화 확산 모형으로 가장 잘 설명되는 예는?",
+    "choices": [
+      "방해과제가 최신효과를 없앤다.",
+      "‘사과’를 보고 ‘빨강’, ‘소방차’ 같은 관련 단어가 연이어 떠오른다.",
+      "빛은 직진해 망막상이 역전된다.",
+      "회전각이 클수록 반응시간이 증가한다."
+    ],
+    "answer": 1,
+    "explanation": "의미망에서 한 개념의 활성화가 관련 개념으로 퍼지는 현상을 활성화 확산으로 설명한다."
+  },
+  {
+    "id": "Q033",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "부호화 명세성의 원리와 가장 가까운 설명은?",
+    "choices": [
+      "부호화 때의 맥락과 인출 때의 맥락이 비슷할수록 기억이 잘 난다.",
+      "강화가 부분적으로 주어지면 소거가 빠르다.",
+      "기억은 반드시 감각기억을 거치지 않는다.",
+      "반응기준이 낮으면 허위경보가 줄어든다."
+    ],
+    "answer": 0,
+    "explanation": "인출 단서가 부호화 당시의 맥락과 맞을수록 회상이 쉬워진다."
+  },
+  {
+    "id": "Q034",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "설단현상(tip-of-the-tongue)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "전경과 배경이 서로 바뀌는 현상이다.",
+      "반복 노출로 반응이 감소하는 현상이다.",
+      "도피행동의 좌절로 무기력이 학습되는 현상이다.",
+      "아는 것 같은데 정확한 단어 인출에 실패하는 현상이다."
+    ],
+    "answer": 3,
+    "explanation": "설단현상은 기억 탐색 또는 인출 실패의 대표 사례다."
+  },
+  {
+    "id": "Q035",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "암묵기억에 속하지 않는 것을 고르면?",
+    "choices": [
+      "점화",
+      "조건형성",
+      "절차기억",
+      "섬광기억"
+    ],
+    "answer": 3,
+    "explanation": "섬광기억은 생생한 사건 기억이고, 점화·조건형성·절차기억은 암묵기억의 대표 예다."
+  },
+  {
+    "id": "Q036",
+    "chapter": "기억",
+    "difficulty": "기출유사",
+    "question": "오기억(false memory)을 설명하는 데 특히 관련 깊은 것은?",
+    "choices": [
+      "스키마, 스크립트, 목격자 증언",
+      "수렴각, 양안부등, 입체시",
+      "축삭, 수상돌기, 세포체",
+      "정적강화, 부적강화, 처벌"
+    ],
+    "answer": 0,
+    "explanation": "오기억은 기억이 저장된 원본을 그대로 복사하는 것이 아니라 재구성될 수 있음을 보여준다."
+  },
+  {
+    "id": "Q037",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "정신물리학(psychophysics)의 중심 관심은?",
+    "choices": [
+      "장기기억과 단기기억의 신경해부학적 구분",
+      "문제공간에서 목표상태까지의 이동",
+      "반응 뒤 결과가 행동빈도에 미치는 영향",
+      "물리적 자극과 심리적 감각 경험 사이의 대응관계"
+    ],
+    "answer": 3,
+    "explanation": "정신물리학은 물리적 에너지와 감각 경험을 수량적으로 연결하려는 시도다."
+  },
+  {
+    "id": "Q038",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Locke식 일차적 성질에 해당하는 것은?",
+    "choices": [
+      "모양, 크기, 위치, 운동",
+      "색, 소리, 온도, 냄새",
+      "발성 고리, 시공간 그림판",
+      "동기, 정서, 반응기준"
+    ],
+    "answer": 0,
+    "explanation": "일차적 성질은 모양·크기·위치·운동처럼 대상의 물리적 속성으로 정리된다."
+  },
+  {
+    "id": "Q039",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "이차적 성질에 해당하는 것은?",
+    "choices": [
+      "해마와 시상",
+      "모양, 크기, 위치, 운동",
+      "색, 소리, 온도, 냄새",
+      "정적강화와 부적강화"
+    ],
+    "answer": 2,
+    "explanation": "이차적 성질은 감각 경험과 관련되는 색·소리·온도·냄새 등이다."
+  },
+  {
+    "id": "Q040",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "절대역(absolute threshold)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "장기기억에서 인출 단서가 실패하는 상태다.",
+      "두 자극을 구분하는 최소 차이만을 뜻한다.",
+      "반응 뒤 강화가 주어지는 평균 시간이다.",
+      "감각을 일으키는 최소 자극 강도와 관련된다."
+    ],
+    "answer": 3,
+    "explanation": "절대역은 자극이 ‘있다’고 감지될 문턱이다."
+  },
+  {
+    "id": "Q041",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "차이역/JND에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "두 자극 사이의 차이를 겨우 알아차릴 수 있는 최소 차이",
+      "감각기관에 정보가 남는 최대 시간",
+      "뉴런의 축삭에서 신호가 흐르는 방향",
+      "단기기억의 평균 용량"
+    ],
+    "answer": 0,
+    "explanation": "JND는 just noticeable difference, 즉 겨우 느낄 수 있는 차이다."
+  },
+  {
+    "id": "Q042",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Weber 법칙의 핵심으로 가장 적절한 것은?",
+    "choices": [
+      "반응기준은 감각 판단에 전혀 영향을 주지 않는다.",
+      "지각은 항상 감각자료의 완전한 복사다.",
+      "감각 강도는 물리 강도와 반드시 일대일 선형 대응한다.",
+      "차이 감지는 자극의 절대 변화량보다 표준자극 대비 상대 변화량에 좌우된다."
+    ],
+    "answer": 3,
+    "explanation": "Weber fraction ΔS/S처럼 상대적 변화량이 중요하다."
+  },
+  {
+    "id": "Q043",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Fechner 법칙에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "감각 강도는 물리적 강도의 로그 함수로 표현될 수 있다.",
+      "계열위치효과는 최신효과만으로 구성된다.",
+      "심상은 절대로 상징적으로 부호화되지 않는다.",
+      "강화는 항상 전체강화일 때 가장 오래 유지된다."
+    ],
+    "answer": 0,
+    "explanation": "Fechner는 ‘마음을 수량화할 수 있다’는 정신물리학적 관점을 대표한다."
+  },
+  {
+    "id": "Q044",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "신호탐지이론이 강조하는 것은?",
+    "choices": [
+      "감각 판단에는 민감성뿐 아니라 반응기준, 동기, 정서, 인지가 관여한다.",
+      "소음이 없는 상황에서만 지각이 가능하다.",
+      "정신물리학은 항상 절대역만 연구해야 한다.",
+      "반응기준이 높아질수록 허위경보는 항상 증가한다."
+    ],
+    "answer": 0,
+    "explanation": "신호탐지이론은 판단/의사결정 과정을 포함해 감각을 설명한다."
+  },
+  {
+    "id": "Q045",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "신호가 있는데 ‘없다’고 응답한 경우는?",
+    "choices": [
+      "허위경보(false alarm)",
+      "실수(miss)",
+      "적중(hit)",
+      "정확부정(correct rejection)"
+    ],
+    "answer": 1,
+    "explanation": "신호+소음 상황에서 아니오라고 하면 miss다."
+  },
+  {
+    "id": "Q046",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "소음만 있는데 ‘있다’고 응답한 경우는?",
+    "choices": [
+      "허위경보(false alarm)",
+      "정확부정(correct rejection)",
+      "실수(miss)",
+      "적중(hit)"
+    ],
+    "answer": 0,
+    "explanation": "신호가 없는데 예라고 응답하는 것이 허위경보다."
+  },
+  {
+    "id": "Q047",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Camera Obscura 논의의 핵심으로 가장 적절한 것은?",
+    "choices": [
+      "망막상에는 3차원 정보가 완전하게 들어 있어 지각 문제가 없다.",
+      "시각은 감각기억 없이 장기기억으로 직접 저장된다.",
+      "감각기관에 주어진 정보는 물리적 세계와 심리적 세계 모두와 다르며 지각의 과제가 생긴다.",
+      "빛은 곡선으로 이동하므로 망막상은 역전되지 않는다."
+    ],
+    "answer": 2,
+    "explanation": "Camera Obscura는 상하좌우 역전, 2차원, 크기·거리 애매성 등을 통해 지각 문제를 제기한다."
+  },
+  {
+    "id": "Q048",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Camera Obscura와 관련 깊은 인물로 가장 적절한 것은?",
+    "choices": [
+      "Tolman",
+      "Al Hassan/Alhazen",
+      "Skinner",
+      "Baddeley"
+    ],
+    "answer": 1,
+    "explanation": "Al Hassan은 광학과 Camera Obscura 논의에서 기출형으로 자주 묶인다."
+  },
+  {
+    "id": "Q049",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "원격자극과 근접자극의 설명으로 가장 적절한 것은?",
+    "choices": [
+      "둘은 언제나 완전히 동일하다.",
+      "근접자극은 지각자 움직임과 무관하게 항상 불변이다.",
+      "원격자극은 망막상이고 근접자극은 대상 그 자체다.",
+      "원격자극은 실제 대상, 근접자극은 감각기관에 주어진 자극 상태다."
+    ],
+    "answer": 3,
+    "explanation": "대상은 동일해도 눈·머리·몸의 움직임에 따라 근접자극은 계속 달라질 수 있다."
+  },
+  {
+    "id": "Q050",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "지각적 항상성 문제와 가장 가까운 것은?",
+    "choices": [
+      "감각기억은 짧은 시간 안에 소멸한다.",
+      "근접자극은 변해도 동일한 대상을 동일하게 지각한다.",
+      "회전각이 커질수록 심적 회전 시간이 길어진다.",
+      "부분강화는 소거저항을 높인다."
+    ],
+    "answer": 1,
+    "explanation": "대상/지각자 움직임으로 감각자료는 변하지만 우리는 동일한 물체를 지각한다."
+  },
+  {
+    "id": "Q051",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Gestalt 심리학의 설명과 가장 거리가 먼 것은?",
+    "choices": [
+      "전경-배경 분리",
+      "심리-신경 동형성",
+      "지각적 체제화",
+      "뉴런 시냅스에서 신경전달물질이 분비된다."
+    ],
+    "answer": 3,
+    "explanation": "신경전달물질은 생물학적 기초의 개념이고, Gestalt는 지각적 전체와 체제화를 중시한다."
+  },
+  {
+    "id": "Q052",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "전경-배경 역전 또는 가역도형이 보여주는 것은?",
+    "choices": [
+      "감각기억은 항상 장기기억보다 오래 지속된다.",
+      "동일한 자극도 지각적 체제화에 따라 다르게 보일 수 있다.",
+      "해마 손상이 순행성 기억상실을 낳는다.",
+      "반응 뒤 강화가 행동을 증가시킨다."
+    ],
+    "answer": 1,
+    "explanation": "토끼-오리 그림 같은 가역도형은 지각의 조직화/해석 과정을 보여준다."
+  },
+  {
+    "id": "Q053",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "시각원소특질(visual primitives)의 존재를 시사하는 것과 가장 거리가 먼 것은?",
+    "choices": [
+      "세부특징 탐지기",
+      "시각탐색에서의 돌출",
+      "전경-배경 역전",
+      "순응효과"
+    ],
+    "answer": 2,
+    "explanation": "전경-배경 역전은 Gestalt적 체제화와 더 관련되고, 세부특징 탐지기·돌출·순응효과는 원소특질 논의와 더 가깝다."
+  },
+  {
+    "id": "Q054",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "공간지각에서 양안단서에 해당하는 것은?",
+    "choices": [
+      "결 기울기",
+      "선형조망",
+      "상대적 크기",
+      "수렴"
+    ],
+    "answer": 3,
+    "explanation": "수렴과 양안부등은 두 눈을 사용하는 양안단서다."
+  },
+  {
+    "id": "Q055",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "양안부등(binocular disparity)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "자극의 상대 변화량에 관한 법칙이다.",
+      "장기기억에서 활성화가 퍼지는 현상이다.",
+      "한 눈만으로 먼 대상을 판단하는 단서다.",
+      "두 눈에 맺히는 이미지의 차이를 이용해 깊이를 지각한다."
+    ],
+    "answer": 3,
+    "explanation": "양안부등은 입체시와 깊이지각의 대표 양안단서다."
+  },
+  {
+    "id": "Q056",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "단안단서에 해당하지 않는 것은?",
+    "choices": [
+      "수렴각",
+      "선형조망",
+      "결 기울기",
+      "상대적 크기"
+    ],
+    "answer": 0,
+    "explanation": "수렴은 두 눈의 안구운동 정보이므로 양안단서다."
+  },
+  {
+    "id": "Q057",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Gibson의 생태학적 접근에서 대상의 의미에 해당하는 개념은?",
+    "choices": [
+      "행동가능성(affordance)",
+      "발성 고리",
+      "처리수준",
+      "활성화 확산"
+    ],
+    "answer": 0,
+    "explanation": "Gibson은 대상이 유기체에게 제공하는 행동가능성을 중시한다."
+  },
+  {
+    "id": "Q058",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "Helmholtz의 무의식적 추론과 가장 가까운 설명은?",
+    "choices": [
+      "신경전달은 전적으로 화학적이므로 전기신호는 없다.",
+      "불완전한 감각정보를 바탕으로 지각체계가 가설검증처럼 해석한다.",
+      "학습은 반드시 강화물 없이 일어난다.",
+      "심상은 절대로 뒤집어질 수 없다."
+    ],
+    "answer": 1,
+    "explanation": "지각을 문제해결로 보는 관점에서 Helmholtz의 무의식적 추론이 중요하다."
+  },
+  {
+    "id": "Q059",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "‘감각의 문제 → 지각의 과제’라는 표현과 가장 가까운 내용은?",
+    "choices": [
+      "지각은 오직 장기기억의 인출 실패다.",
+      "감각기관에 주어진 정보가 애매하므로 지각은 세계를 재구성해야 한다.",
+      "감각정보는 반응 뒤 보상에 의해 결정된다.",
+      "감각과 지각은 완전히 동일한 말이다."
+    ],
+    "answer": 1,
+    "explanation": "Camera Obscura와 근접자극 문제는 감각자료만으로는 지각된 세계를 설명하기 어렵다는 점을 강조한다."
+  },
+  {
+    "id": "Q060",
+    "chapter": "감각-지각",
+    "difficulty": "기출유사",
+    "question": "‘고향의 봄’을 여러 사람이 다른 목소리로 불러도 같은 노래로 듣는 현상과 가장 가까운 개념은?",
+    "choices": [
+      "순행성 기억상실",
+      "학습된 무기력",
+      "지각적 항상성",
+      "심적 회전"
+    ],
+    "answer": 2,
+    "explanation": "물리적 자극은 달라도 동일한 대상으로 지각하는 것은 지각적 항상성의 예다."
+  },
+  {
+    "id": "Q061",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "아날로그 표상에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "대상의 지각적 속성과 관계를 닮은 방식의 표상이다.",
+      "언어·기호처럼 임의적 약속으로만 구성된다.",
+      "반응 뒤 강화물이 주어지는 방식이다.",
+      "신경세포 간 화학적 전달을 뜻한다."
+    ],
+    "answer": 0,
+    "explanation": "아날로그 표상은 그림/심상처럼 대상의 구조와 닮은 표상이다."
+  },
+  {
+    "id": "Q062",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "상징적 표상에 해당하지 않는 것은?",
+    "choices": [
+      "개념",
+      "심상",
+      "명제",
+      "범주"
+    ],
+    "answer": 1,
+    "explanation": "심상은 주로 아날로그 표상 쪽이고, 개념·명제·범주는 상징적 표상으로 정리된다."
+  },
+  {
+    "id": "Q063",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "심적 회전 연구가 지지하는 주장으로 가장 적절한 것은?",
+    "choices": [
+      "고전적 조건형성은 심상 회전에 의해 성립한다.",
+      "반응시간은 회전각과 무관하다.",
+      "심상은 언제나 언어 명제만으로 처리된다.",
+      "심상의 회전은 지각에서의 회전과 기능적으로 등가적일 수 있다."
+    ],
+    "answer": 3,
+    "explanation": "회전각이 커질수록 반응시간이 증가하는 패턴은 마음의 눈 논의를 지지한다."
+  },
+  {
+    "id": "Q064",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "심적 주사 연구에서 보통 확인하려는 것은?",
+    "choices": [
+      "시냅스의 화학적 전달",
+      "감각기억의 부분보고 우수성",
+      "심상 속 거리와 반응시간 사이의 선형 관계",
+      "강화계획에 따른 반응률 변화"
+    ],
+    "answer": 2,
+    "explanation": "상상 속 지도에서 먼 지점으로 이동할수록 시간이 더 걸리는지 보는 연구다."
+  },
+  {
+    "id": "Q065",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "심상 역전 과제가 시사하는 바로 가장 적절한 것은?",
+    "choices": [
+      "심상은 지각보다 항상 더 쉽게 역전된다.",
+      "심상 역전은 학습된 무기력의 근거다.",
+      "심상은 전적으로 사진 같은 아날로그 표상만은 아니며 부호화된 측면도 있다.",
+      "심상은 감각기억과 동일하다."
+    ],
+    "answer": 2,
+    "explanation": "토끼-오리 그림을 실제로 보면 역전되지만 심상만으로는 쉽지 않아, 심상에 상징적 부호화가 관여함을 시사한다."
+  },
+  {
+    "id": "Q066",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "심적 지도 연구가 보여주는 것은?",
+    "choices": [
+      "장기기억은 단기기억으로 인출되지 않는다.",
+      "모든 조건형성은 무조건자극과 무관하다.",
+      "공간적 사고는 항상 실제 거리만 정확히 반영한다.",
+      "공간적 사고도 지리적 범주 같은 상징적 표상의 영향을 받는다."
+    ],
+    "answer": 3,
+    "explanation": "San Diego/Reno, Seattle/Montreal 예시처럼 실제 위치보다 범주 정보가 판단에 개입할 수 있다."
+  },
+  {
+    "id": "Q067",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "무심상사고와 가장 가까운 설명은?",
+    "choices": [
+      "감각정보가 없는 상황에서는 사고가 불가능하다.",
+      "사고는 항상 사진적 심상으로만 진행된다.",
+      "자동처리는 사고 과정과 무관하다.",
+      "이미지 없이도 관계성·상징적 표상으로 사고가 가능하다."
+    ],
+    "answer": 3,
+    "explanation": "무심상사고는 심상이 사고의 필수 재료는 아니라는 주장을 지지한다."
+  },
+  {
+    "id": "Q068",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "명제(proposition)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "반응 뒤에 주어지는 강화물",
+      "주어와 술어의 개념 결합처럼 사고 내용을 표현하는 상징적 단위",
+      "두 눈의 이미지 차이를 이용한 깊이 단서",
+      "시각기관에 잠시 남는 감각기억"
+    ],
+    "answer": 1,
+    "explanation": "명제는 언어적/상징적 표상의 대표 형태로 사고의 내용 단위를 이룬다."
+  },
+  {
+    "id": "Q069",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "문제공간(problem space)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "단기기억이 감각기억으로 되돌아가는 공간이다.",
+      "시냅스 전 뉴런과 후 뉴런 사이의 틈이다.",
+      "망막상과 물리적 대상 사이의 광학적 거리다.",
+      "현재 상태에서 목표 상태로 이동하는 심리적 공간이다."
+    ],
+    "answer": 3,
+    "explanation": "문제해결은 현 상태와 목표 상태의 차이를 줄이는 과정으로 설명된다."
+  },
+  {
+    "id": "Q070",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "Stroop 효과가 보여주는 것으로 가장 적절한 것은?",
+    "choices": [
+      "강화물이 없으면 학습이 절대 일어나지 않음을 보여준다.",
+      "신경전달물질이 화학적으로 전달됨을 보여준다.",
+      "단어 읽기 같은 자동처리가 색 이름 말하기를 간섭할 수 있다.",
+      "감각기억 용량이 무한대임을 보여준다."
+    ],
+    "answer": 2,
+    "explanation": "Stroop 효과는 자동화된 처리의 부작용 또는 간섭을 보여준다."
+  },
+  {
+    "id": "Q071",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "전문가의 신속한 수행과 가장 관련 깊은 과정은?",
+    "choices": [
+      "절대역의 감소",
+      "Camera Obscura의 상하좌우 역전",
+      "자동화와 절차화",
+      "감각기억의 단서 지연"
+    ],
+    "answer": 2,
+    "explanation": "만 시간의 법칙류 논의에서는 숙련을 자동화/절차화와 연결해 설명한다."
+  },
+  {
+    "id": "Q072",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "마음 갖춤새(mental set)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "물건을 평소 용도로만 보는 경향",
+      "불통제 경험 후 도피행동이 약해지는 현상",
+      "이전에 성공한 문제해결 전략에 고착되는 경향",
+      "관련 단어가 연쇄적으로 떠오르는 현상"
+    ],
+    "answer": 2,
+    "explanation": "마음 갖춤새는 기존 전략에 고착되어 새로운 해결책을 방해하는 현상이다."
+  },
+  {
+    "id": "Q073",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "기능적 고착(functional fixedness)의 예로 가장 적절한 것은?",
+    "choices": [
+      "2-4-6 과제에서 확인사례만 찾는다.",
+      "상자를 받침대로 쓸 수 있는데도 담는 용도로만 생각한다.",
+      "‘사과’를 보고 ‘빨강’이 떠오른다.",
+      "방해과제로 최신효과가 줄어든다."
+    ],
+    "answer": 1,
+    "explanation": "기능적 고착은 물체의 일반적 기능에 묶여 다른 용도를 떠올리지 못하는 것이다."
+  },
+  {
+    "id": "Q074",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "문제해결 장애를 극복하는 방식과 거리가 먼 것은?",
+    "choices": [
+      "문제공간 재구성",
+      "표상 바꾸기",
+      "허위경보 기준 낮추기",
+      "역행풀기"
+    ],
+    "answer": 2,
+    "explanation": "허위경보는 신호탐지이론 용어이고, 표상 바꾸기·역행풀기·재구성은 문제해결 전략이다."
+  },
+  {
+    "id": "Q075",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "Poincaré가 말한 창의적 사고 과정의 순서로 가장 적절한 것은?",
+    "choices": [
+      "검증 → 해명 → 준비 → 부화",
+      "준비 → 부화 → 해명 → 검증",
+      "부화 → 준비 → 검증 → 해명",
+      "해명 → 검증 → 부화 → 준비"
+    ],
+    "answer": 1,
+    "explanation": "Poincaré는 preparation, incubation, illumination, verification 순서로 정리된다."
+  },
+  {
+    "id": "Q076",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "창의적 사고에서 부화(incubation)의 기능으로 가장 적절한 것은?",
+    "choices": [
+      "기존 마음 갖춤새에서 벗어나 문제공간을 재구성할 기회를 준다.",
+      "단기기억의 최신효과를 강화한다.",
+      "뉴런의 수상돌기를 축삭으로 바꾼다.",
+      "무조건자극과 조건자극의 근접성을 높인다."
+    ],
+    "answer": 0,
+    "explanation": "부화기는 산책·목욕 등 맥락 변화 속에서 고착을 완화하고 새로운 접근을 가능하게 한다."
+  },
+  {
+    "id": "Q077",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "Wason의 2-4-6 과제가 주로 보여주는 것은?",
+    "choices": [
+      "감각 순응",
+      "잠재학습",
+      "양안부등",
+      "확증편향"
+    ],
+    "answer": 3,
+    "explanation": "사람들은 자신의 가설을 반박하는 사례보다 확인하는 사례를 찾기 쉽다."
+  },
+  {
+    "id": "Q078",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "Popper의 반증가능성과 가장 가까운 설명은?",
+    "choices": [
+      "과학적 명제는 반박될 수 있는 방식으로 제시되어야 한다.",
+      "과학은 이미 맞다고 믿는 사례만 모으면 충분하다.",
+      "반증가능성은 감각기억의 파지시간이다.",
+      "가설이 반박될 수 없을수록 더 과학적이다."
+    ],
+    "answer": 0,
+    "explanation": "Popper는 검증/확증보다 반증가능성을 과학성의 핵심 기준으로 강조한다."
+  },
+  {
+    "id": "Q079",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "귀납추리에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "행동 뒤 결과가 행동을 변화시키는 과정이다.",
+      "전제가 참이면 결론이 반드시 참인 추리만을 뜻한다.",
+      "감각기관의 역치를 측정하는 절차다.",
+      "관찰 사례에서 일반 결론을 이끌지만 참을 논리적으로 보장하지는 않는다."
+    ],
+    "answer": 3,
+    "explanation": "귀납추리는 일상과 과학에서 중요하지만 확증편향과 연결될 수 있다."
+  },
+  {
+    "id": "Q080",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "연역추리에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "기억흔적의 깊이를 설명한다.",
+      "형식상 타당하면 전제가 참일 때 결론의 참이 보장된다.",
+      "두 눈의 수렴각을 이용한다.",
+      "관찰 사례를 쌓아 일반법칙을 추정한다."
+    ],
+    "answer": 1,
+    "explanation": "연역은 확실한 추론을 추구하지만 동어반복 비판 등도 함께 다뤄진다."
+  },
+  {
+    "id": "Q081",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "대표성 어림법에 해당하는 예로 가장 적절한 것은?",
+    "choices": [
+      "반응 후 보상이 주어져 행동이 증가한다.",
+      "시각 정보가 망막에 2차원으로 투사된다고 판단한다.",
+      "어떤 사람이 전형적 이미지와 닮았다는 이유로 그 범주에 속한다고 판단한다.",
+      "최근 뉴스에서 많이 본 사건을 실제보다 흔하다고 판단한다."
+    ],
+    "answer": 2,
+    "explanation": "대표성 어림법은 범주의 원형/전형성에 기대어 판단하는 인지적 지름길이다."
+  },
+  {
+    "id": "Q082",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "가용성 어림법에 해당하는 예로 가장 적절한 것은?",
+    "choices": [
+      "기억항목을 시공간 그림판에 유지한다.",
+      "쉽게 떠오르는 사례를 근거로 사건의 빈도나 가능성을 판단한다.",
+      "반응기준을 높여 허위경보를 줄인다.",
+      "어떤 대상이 원형과 닮았다는 이유로 범주를 판단한다."
+    ],
+    "answer": 1,
+    "explanation": "가용성 어림법은 인출 용이성을 실제 빈도 판단에 사용한다."
+  },
+  {
+    "id": "Q083",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "George Boole의 『사고의 법칙』과 가장 가까운 분야는?",
+    "choices": [
+      "신경해부학",
+      "생리학",
+      "논리학",
+      "정신물리학"
+    ],
+    "answer": 2,
+    "explanation": "Boole은 사고와 논리의 형식화와 관련된다."
+  },
+  {
+    "id": "Q084",
+    "chapter": "사고",
+    "difficulty": "기출유사",
+    "question": "인간의 비합리성을 설명하는 요소와 거리가 먼 것은?",
+    "choices": [
+      "논리적 오류",
+      "시냅스 이전 세포의 축삭말단",
+      "어림법에 의한 의사결정",
+      "확증편향"
+    ],
+    "answer": 1,
+    "explanation": "축삭말단은 생물학 개념이고, 확증편향·논리적 오류·어림법은 사고/추론의 비합리성과 관련된다."
+  },
+  {
+    "id": "Q085",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "심리학에서 학습의 정의로 가장 적절한 것은?",
+    "choices": [
+      "망막상에서 상하좌우가 역전되는 현상",
+      "경험에 의해 행동 또는 행동 가능성이 변화하는 과정",
+      "태어날 때부터 완전히 고정된 반사",
+      "단기기억에 몇 초 동안 저장된 정보"
+    ],
+    "answer": 1,
+    "explanation": "학습은 경험에 의해 행동이 출현·증가·감소·소멸하는 변화로 정리된다."
+  },
+  {
+    "id": "Q086",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "습관화(habituation)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "조건자극이 무조건자극을 예측해 조건반응을 유발한다.",
+      "강화물이 없는데도 인지도가 형성된다.",
+      "반응 뒤 보상이 주어져 행동이 증가한다.",
+      "반복 노출된 자극에 대한 반응 경향성이 감소한다."
+    ],
+    "answer": 3,
+    "explanation": "습관화는 생존에 중요한 자극 범위를 조율하기 위한 기본적 학습 현상이다."
+  },
+  {
+    "id": "Q087",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "고전적 조건형성의 기본 구조로 가장 적절한 것은?",
+    "choices": [
+      "강화 없이도 내적 표상이 형성된다.",
+      "중성자극이 무조건자극과 연합되어 조건반응을 유발한다.",
+      "문제공간을 재구성해 통찰이 생긴다.",
+      "반응 이후 결과가 다음 행동을 변화시킨다."
+    ],
+    "answer": 1,
+    "explanation": "Pavlov식 고전적 조건형성은 CS-US 연합이 핵심이다."
+  },
+  {
+    "id": "Q088",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "Pavlov의 개 실험에서 고기 가루는 보통 무엇에 해당하는가?",
+    "choices": [
+      "중성반응(NR)",
+      "조건반응(CR)",
+      "무조건자극(US)",
+      "조건자극(CS)"
+    ],
+    "answer": 2,
+    "explanation": "고기 가루는 학습 없이 침 분비를 유발하므로 무조건자극이다."
+  },
+  {
+    "id": "Q089",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "Pavlov의 개 실험에서 조건형성 후 소리에 대한 침 분비는?",
+    "choices": [
+      "무조건반응(UR)",
+      "무조건자극(US)",
+      "조건반응(CR)",
+      "변화비율계획"
+    ],
+    "answer": 2,
+    "explanation": "조건형성 후 소리(CS)에 의해 유발되는 침 분비가 조건반응이다."
+  },
+  {
+    "id": "Q090",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "고차 조건형성에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "회전각이 커질수록 반응시간이 증가한다.",
+      "이미 조건자극이 된 자극을 이용해 다른 중성자극도 조건자극이 될 수 있다.",
+      "강화물이 전혀 없으면 어떤 학습도 일어나지 않는다.",
+      "행동의 결과가 행동 빈도를 조절한다."
+    ],
+    "answer": 1,
+    "explanation": "고차 조건형성은 기존 CS와 새 중성자극의 연합을 통해 조건반응을 확장한다."
+  },
+  {
+    "id": "Q091",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "Watson의 조건정서반응(CER) 연구와 가장 관련 깊은 것은?",
+    "choices": [
+      "신경전달물질은 개구리 심장에서 증명되었다.",
+      "감각기억은 250ms만 지속된다.",
+      "기억은 위계망 모형으로만 저장된다.",
+      "공포도 조건형성을 통해 학습될 수 있다."
+    ],
+    "answer": 3,
+    "explanation": "흰 쥐와 큰 소리의 연합처럼 공포반응도 조건형성될 수 있음을 보였다."
+  },
+  {
+    "id": "Q092",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "체계적 둔감화에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "시각 감각기억의 부분보고 실험이다.",
+      "공포자극을 약한 형태부터 이완반응과 점진적으로 연결하는 역조건형성 기법이다.",
+      "문제해결에서 기존 전략에 고착되는 현상이다.",
+      "강화물이 평균 반응 횟수 뒤에 주어지는 계획이다."
+    ],
+    "answer": 1,
+    "explanation": "체계적 둔감화는 공포자극(CS)에 이완/즐거움 반응을 새로 연결하는 치료적 응용이다."
+  },
+  {
+    "id": "Q093",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "Thorndike의 효과의 법칙과 가장 가까운 설명은?",
+    "choices": [
+      "기억은 언제나 장기기억에서 소멸된다.",
+      "행동은 그 행동이 가져온 효과의 함수로 변화한다.",
+      "심상은 항상 사진처럼 저장된다.",
+      "감각판단은 반응기준에만 의존한다."
+    ],
+    "answer": 1,
+    "explanation": "효과가 만족스럽거나 유리한 반응은 강화되어 다시 나타나기 쉽다."
+  },
+  {
+    "id": "Q094",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "조작적 조건형성의 핵심은?",
+    "choices": [
+      "반응기준을 조절해 허위경보가 늘어난다.",
+      "유기체의 반응 이후 결과가 이후 행동 빈도에 영향을 준다.",
+      "CS와 US가 시간적으로 근접하면 반사반응이 생긴다.",
+      "빛이 직진해 망막상이 역전된다."
+    ],
+    "answer": 1,
+    "explanation": "Skinner식 조작적 조건형성은 R→결과 구조다."
+  },
+  {
+    "id": "Q095",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "행동 조성(shaping)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "원하지 않는 기억을 장기기억에서 삭제한다.",
+      "신호가 없는데 있다고 응답한다.",
+      "상징적 표상을 아날로그 표상으로 바꾼다.",
+      "목표 행동에 가까운 계기적 근사 행동을 강화한다."
+    ],
+    "answer": 3,
+    "explanation": "조성은 복잡한 행동을 단계적으로 만들어갈 때 사용된다."
+  },
+  {
+    "id": "Q096",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "정적 강화의 예로 가장 적절한 것은?",
+    "choices": [
+      "시끄러운 소리를 끄기 위해 버튼을 눌러 버튼 누르기가 증가한다.",
+      "지각하면 벌점을 받아 지각이 감소한다.",
+      "장난감을 빼앗겨 울음이 감소한다.",
+      "공부를 하면 칭찬을 받아 공부 행동이 증가한다."
+    ],
+    "answer": 3,
+    "explanation": "정적 강화는 좋은 자극을 제공하여 행동을 증가시키는 것이다."
+  },
+  {
+    "id": "Q097",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "부적 강화의 예로 가장 적절한 것은?",
+    "choices": [
+      "소리를 크게 내면 벌을 받아 행동이 감소한다.",
+      "공포자극을 반복해 반응이 감소한다.",
+      "숙제를 하면 스티커를 받아 숙제가 증가한다.",
+      "안전벨트를 매면 경고음이 꺼져 안전벨트 매기가 증가한다."
+    ],
+    "answer": 3,
+    "explanation": "부적 강화는 불쾌한 자극을 제거해 행동을 증가시킨다. 처벌과 구분해야 한다."
+  },
+  {
+    "id": "Q098",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "부분강화효과에 대한 설명으로 적절한 것은?",
+    "choices": [
+      "부분적으로 강화된 행동은 소거에 더 저항적일 수 있다.",
+      "감각기억의 파지기간을 늘린다.",
+      "전체강화가 중단되면 반응률이 항상 더 오래 유지된다.",
+      "강화가 없으면 인지도도 생기지 않는다."
+    ],
+    "answer": 0,
+    "explanation": "부분강화는 보상이 매번 나오지 않아도 반응이 지속되는 경향을 만든다."
+  },
+  {
+    "id": "Q099",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "고정비율계획(FR)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "평균적으로 변하는 시간 간격 뒤 첫 반응이 강화된다.",
+      "일정한 반응 횟수마다 강화가 주어진다.",
+      "일정한 시간이 지난 뒤 첫 반응이 강화된다.",
+      "평균적으로 변하는 반응 횟수마다 강화가 주어진다."
+    ],
+    "answer": 1,
+    "explanation": "비율계획은 반응 수가 기준이고, 고정비율은 그 수가 일정하다."
+  },
+  {
+    "id": "Q100",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "변화비율계획(VR)의 대표 예로 가장 적절한 것은?",
+    "choices": [
+      "정해진 10번 반응마다 강화가 주어진다.",
+      "5분마다 첫 반응에 강화가 주어진다.",
+      "도박기계처럼 예측하기 어려운 반응 횟수 뒤 보상이 주어진다.",
+      "매주 금요일 퀴즈를 보면 공부한다."
+    ],
+    "answer": 2,
+    "explanation": "변화비율은 높은 반응률과 강한 지속성을 보이는 강화계획으로 자주 출제된다."
+  },
+  {
+    "id": "Q101",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "고정간격계획(FI)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "일정 반응 횟수마다 강화된다.",
+      "강화 없이도 인지도가 형성된다.",
+      "평균적으로 다른 반응 횟수마다 강화된다.",
+      "일정 시간이 지난 뒤 첫 반응이 강화된다."
+    ],
+    "answer": 3,
+    "explanation": "간격계획은 시간 기준이며, 고정간격은 시간 간격이 일정하다."
+  },
+  {
+    "id": "Q102",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "쉬지 않고 꾸준히 공부하는 행동을 가장 잘 설명하는 강화계획으로 기출에서 자주 연결되는 것은?",
+    "choices": [
+      "전체강화",
+      "학습된 무기력",
+      "변화간격계획",
+      "고정비율계획"
+    ],
+    "answer": 2,
+    "explanation": "언제 점검/강화가 올지 예측하기 어려운 시간 기준은 꾸준한 반응을 만들기 쉽다."
+  },
+  {
+    "id": "Q103",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "도피학습에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "이미 존재하는 혐오자극을 끝내는 반응을 학습한다.",
+      "앞으로 올 혐오자극을 미리 막는 반응을 학습한다.",
+      "강화 없이 미로 지도가 형성된다.",
+      "중성자극이 무조건자극과 연합된다."
+    ],
+    "answer": 0,
+    "explanation": "도피학습은 혐오자극이 이미 주어진 뒤 그 자극을 종료시키는 행동을 배우는 것이다."
+  },
+  {
+    "id": "Q104",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "회피학습에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "반복 노출로 반응이 감소한다.",
+      "신호가 없는데 있다고 응답한다.",
+      "예상되는 혐오자극을 미리 피하거나 막는 반응을 학습한다.",
+      "공간 범주가 심적 지도 판단에 개입한다."
+    ],
+    "answer": 2,
+    "explanation": "회피학습은 혐오자극이 오기 전에 행동해 그것을 예방하는 학습이다."
+  },
+  {
+    "id": "Q105",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "Tolman의 잠재학습 연구가 시사하는 것은?",
+    "choices": [
+      "학습은 반응기준 변화와 같다.",
+      "모든 학습은 강화 직후에만 나타난다.",
+      "조건자극은 반드시 무조건자극과 동시에 제시되어야 한다.",
+      "강화가 없어도 내적 표상 또는 인지도가 형성될 수 있다."
+    ],
+    "answer": 3,
+    "explanation": "잠재학습은 무보상 조건에서도 학습이 축적될 수 있음을 보여준다."
+  },
+  {
+    "id": "Q106",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "뒤덮기(overshadowing)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "복합자극 중 더 두드러진 자극이 주로 조건형성된다.",
+      "익숙한 자극은 조건형성이 더디다.",
+      "강화 없이 인지도가 형성된다.",
+      "이미 학습된 자극이 새 자극의 학습을 막는다."
+    ],
+    "answer": 0,
+    "explanation": "뒤덮기는 복합자극 중 돌출적인 자극에 주의가 쏠려 그 자극이 주로 학습되는 현상이다."
+  },
+  {
+    "id": "Q107",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "차폐(blocking)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "복합자극 중 더 두드러진 자극이 학습된다.",
+      "통제 불가능 경험으로 도피행동이 약화된다.",
+      "반복 제시된 자극이 반응을 감소시킨다.",
+      "이미 조건형성된 자극이 새 자극과 무조건자극의 학습을 막는다."
+    ],
+    "answer": 3,
+    "explanation": "차폐는 기존 CS가 US를 이미 잘 예측해 새 자극에 대한 학습을 막는 현상이다."
+  },
+  {
+    "id": "Q108",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "잠재적 억제(latent inhibition)에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "혐오자극을 종료하는 행동이 학습된다.",
+      "동기와 정서가 감각판단에 관여한다.",
+      "강화 없이도 인지도가 생긴다.",
+      "이전에 무의미하게 반복 노출된 자극은 나중에 조건형성이 더디다."
+    ],
+    "answer": 3,
+    "explanation": "잠재적 억제는 이미 익숙해져 ‘중요하지 않다’고 처리된 자극의 조건형성이 느린 현상이다."
+  },
+  {
+    "id": "Q109",
+    "chapter": "학습",
+    "difficulty": "기출유사",
+    "question": "학습된 무기력에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "통제 불가능한 혐오 경험이 반복되면 이후 도피/회피 학습이 약해질 수 있다.",
+      "일정 반응 수마다 강화되는 계획이다.",
+      "조건자극과 무조건자극의 수반성이 높은 현상이다.",
+      "무보상 조건에서 인지도가 형성되는 현상이다."
+    ],
+    "answer": 0,
+    "explanation": "행동과 결과 사이의 통제 가능성이 낮은 경험이 핵심이다."
+  },
+  {
+    "id": "Q110",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "중추신경계에 해당하는 것은?",
+    "choices": [
+      "교감신경계와 부교감신경계만",
+      "피부와 근육",
+      "감각수용기와 운동기관",
+      "뇌와 척수"
+    ],
+    "answer": 3,
+    "explanation": "중추신경계는 뇌와 척수로 구성된다."
+  },
+  {
+    "id": "Q111",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "말초신경계에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "뇌와 척수만을 포함한다.",
+      "Camera Obscura에서 생기는 역전상이다.",
+      "중추신경계 밖에서 감각기관, 근육, 피부 등과 연결되는 신경계다.",
+      "기억의 세 저장소 중 하나다."
+    ],
+    "answer": 2,
+    "explanation": "말초신경계는 중추와 신체 주변부를 연결한다."
+  },
+  {
+    "id": "Q112",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "뉴런의 일반적 정보 전달 방향으로 가장 적절한 것은?",
+    "choices": [
+      "세포체 → 시냅스 → 수상돌기 → 축삭",
+      "시냅스 → 세포체 → 수상돌기 → 축삭",
+      "수상돌기 → 세포체 → 축삭 → 시냅스",
+      "축삭 → 수상돌기 → 세포체 → 시냅스"
+    ],
+    "answer": 2,
+    "explanation": "수상돌기에서 입력을 받고 세포체를 거쳐 축삭으로 신호가 전달된다."
+  },
+  {
+    "id": "Q113",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "수상돌기(dendrite)의 주요 기능으로 가장 적절한 것은?",
+    "choices": [
+      "행동을 강화하는 보상이다.",
+      "감각기억을 장기기억으로 전이한다.",
+      "뉴런의 신호를 멀리 보내는 긴 섬유다.",
+      "다른 뉴런으로부터 신호를 받는다."
+    ],
+    "answer": 3,
+    "explanation": "수상돌기는 입력부, 축삭은 출력부로 정리하면 쉽다."
+  },
+  {
+    "id": "Q114",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "축삭(axon)의 주요 기능으로 가장 적절한 것은?",
+    "choices": [
+      "세포체에서 나온 신호를 다른 세포 쪽으로 전달한다.",
+      "기억의 의미망을 구성한다.",
+      "다른 뉴런의 신호를 주로 받아들이는 짧은 돌기다.",
+      "조건자극을 무조건자극으로 바꾼다."
+    ],
+    "answer": 0,
+    "explanation": "축삭은 뉴런의 출력 경로다."
+  },
+  {
+    "id": "Q115",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "시냅스에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "단기기억의 용량을 뜻한다.",
+      "뉴런과 뉴런 사이에서 신호가 전달되는 접합 부위다.",
+      "지각자가 실제로 지각한 현상 세계다.",
+      "뇌와 척수를 합친 말이다."
+    ],
+    "answer": 1,
+    "explanation": "시냅스는 시냅스 이전 세포와 이후 세포 사이의 전달 부위다."
+  },
+  {
+    "id": "Q116",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "뉴런 내부와 시냅스에서의 신호전달을 가장 잘 설명한 것은?",
+    "choices": [
+      "뉴런 내부는 전기적 신호, 시냅스는 주로 화학적 신호가 관여한다.",
+      "시냅스는 학습과 기억과 무관하다.",
+      "뉴런 내부는 언어적 명제로, 시냅스는 심상으로 전달된다.",
+      "둘 다 오직 빛 신호로 전달된다."
+    ],
+    "answer": 0,
+    "explanation": "강의/기출에서는 전기적 활동과 화학적 신경전달을 구분하는 문제가 자주 나온다."
+  },
+  {
+    "id": "Q117",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "Loewi의 개구리 심장 실험이 보여준 것은?",
+    "choices": [
+      "신경전달이 화학적 물질, 즉 신경전달물질에 의해 이루어질 수 있다.",
+      "모든 뇌 기능은 송과선에 있다.",
+      "반응기준이 낮을수록 정확부정이 늘어난다.",
+      "감각기억의 파지기간은 250ms다."
+    ],
+    "answer": 0,
+    "explanation": "Loewi의 실험은 신경전달물질의 존재를 보여준 대표 사례다."
+  },
+  {
+    "id": "Q118",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "신경전달물질에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "지각적 항상성의 다른 이름이다.",
+      "감각기억의 용량을 뜻한다.",
+      "강화계획 중 하나다.",
+      "시냅스에서 다음 세포로 신호를 전달하는 화학물질이다."
+    ],
+    "answer": 3,
+    "explanation": "신경전달물질은 시냅스 전달의 핵심 용어다."
+  },
+  {
+    "id": "Q119",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "fMRI나 PET 같은 기능적 뇌영상기법이 직접 관찰하는 것으로 가장 적절한 것은?",
+    "choices": [
+      "심리적 의미 그 자체",
+      "개별 뉴런 하나하나의 모든 생각 내용",
+      "에너지 사용 또는 혈류 변화와 관련된 지표",
+      "장기기억의 원본 파일"
+    ],
+    "answer": 2,
+    "explanation": "기능적 뇌영상은 신경정보처리 자체가 아니라 대사/혈류 등의 간접 지표를 본다."
+  },
+  {
+    "id": "Q120",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "뇌영상 자료와 뇌손상 연구가 함께 지지할 수 있는 관점은?",
+    "choices": [
+      "특정 기능이 특정 뇌 부위와 관련될 수 있다는 기능적 국재화",
+      "심리학은 뇌를 연구할 수 없다는 관점",
+      "모든 기능이 뇌 전체에 완전히 동일하게 분포한다는 관점",
+      "뇌는 경험에 의해 절대 변하지 않는다는 관점"
+    ],
+    "answer": 0,
+    "explanation": "국재화는 특정 기능과 특정 부위의 관련성을 강조하지만, 이것만으로 모든 것을 설명할 수는 없다."
+  },
+  {
+    "id": "Q121",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "뇌 가소성에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "뇌는 태어난 뒤 절대로 변하지 않는다.",
+      "모든 기능이 송과선 하나에 고정된다는 뜻이다.",
+      "감각기관의 자극이 250ms 안에 사라지는 현상이다.",
+      "경험이나 손상 후 뇌 기능과 연결이 재조직될 수 있다."
+    ],
+    "answer": 3,
+    "explanation": "국소성과 가소성은 상반되는 듯하지만 함께 고려해야 한다."
+  },
+  {
+    "id": "Q122",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "국소성과 가소성의 관계에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "국소성은 오직 철학적 추측이고 연구와 무관하다.",
+      "국소성이 맞으면 가소성은 절대 존재할 수 없다.",
+      "기능의 위치 관련성은 있지만 손상·경험 후 재조직 가능성도 있다.",
+      "가소성은 모든 기능이 완전히 균등 분포한다는 뜻이다."
+    ],
+    "answer": 2,
+    "explanation": "기출형으로 ‘국소성과 가소성을 동시에 고려’하는 선지가 자주 적절하다."
+  },
+  {
+    "id": "Q123",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "Descartes가 심리적 세계와 신체가 만나는 장소로 보았던 부위는?",
+    "choices": [
+      "송과선",
+      "시상",
+      "해마",
+      "척수"
+    ],
+    "answer": 0,
+    "explanation": "데카르트-송과선은 기출에서 매우 직접적으로 묻는 연결이다."
+  },
+  {
+    "id": "Q124",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "진화상 비교적 초기에 발달한 중추신경계 구조물로 가장 적절한 것은?",
+    "choices": [
+      "대뇌피질 연합영역",
+      "척수",
+      "전전두엽",
+      "고차 언어중추"
+    ],
+    "answer": 1,
+    "explanation": "기출은 척수-중뇌-전뇌-종뇌 같은 진화적 순서를 묻는 방식으로 나올 수 있다."
+  },
+  {
+    "id": "Q125",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "해마에 대한 설명으로 가장 적절한 것은?",
+    "choices": [
+      "두 눈의 수렴각을 측정한다.",
+      "빛의 직진으로 상하좌우 역전상을 만든다.",
+      "새로운 장기기억 형성에 중요한 역할을 한다.",
+      "무조건반응을 조건반응으로 바꾸는 강화계획이다."
+    ],
+    "answer": 2,
+    "explanation": "H.M. 사례와 연결해 해마는 새로운 장기기억 형성의 핵심 구조로 정리된다."
+  },
+  {
+    "id": "Q126",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "시상 또는 간뇌 영역 손상과 기억장애를 연결해 생각할 수 있는 사례는?",
+    "choices": [
+      "Korsakoff syndrome",
+      "Wason 과제",
+      "Stroop 효과",
+      "Weber 법칙"
+    ],
+    "answer": 0,
+    "explanation": "Korsakoff syndrome은 알코올 중독, 시상, 순행성/역행성 기억장애와 함께 정리된다."
+  },
+  {
+    "id": "Q127",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "브로카 실어증/베르니케 실어증 같은 사례가 주는 시사점으로 가장 적절한 것은?",
+    "choices": [
+      "기억은 항상 감각기억에서 소멸된다.",
+      "지각은 물리적 세계의 완전한 복사다.",
+      "언어 기능이 특정 뇌 부위와 관련될 수 있다.",
+      "공포는 학습될 수 없다."
+    ],
+    "answer": 2,
+    "explanation": "실어증은 뇌 손상 연구와 기능적 국재화 논의의 대표 예다."
+  },
+  {
+    "id": "Q128",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "전뇌 기저부 손상과 관련되어 순행성/역행성 기억장애를 보일 수 있다고 정리되는 질환은?",
+    "choices": [
+      "학습된 무기력",
+      "Alzheimer형 치매",
+      "색채 순응",
+      "심적 회전"
+    ],
+    "answer": 1,
+    "explanation": "필기본에서는 치매 환자에서 전뇌 기저부 손상과 기억장애를 연결해 설명한다."
+  },
+  {
+    "id": "Q129",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "‘뇌 안에 많은 신경세포가 있으며, 1mm³에도 매우 많은 세포가 있다’는 설명의 목적에 가장 가까운 것은?",
+    "choices": [
+      "강화계획이 네 가지뿐임을 보이기 위해",
+      "마음과 행동의 생물학적 기초가 매우 복잡한 신경계 활동과 관련됨을 보이기 위해",
+      "감각기억의 용량이 정확히 7±2임을 보이기 위해",
+      "심상은 항상 사진적 심상임을 보이기 위해"
+    ],
+    "answer": 1,
+    "explanation": "생물학적 기초 파트는 마음을 뇌와 신경계의 복잡한 활동과 연결해 본다."
+  },
+  {
+    "id": "Q130",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "신경계 연구에서 ‘동물정기’ 같은 역사적 설명을 다루는 이유로 가장 적절한 것은?",
+    "choices": [
+      "강화계획의 종류를 설명하기 위해서다.",
+      "신경신호의 정체를 밝히기 전 사람들이 신경전달을 어떻게 상상했는지 보여준다.",
+      "현대 뇌영상이 동물정기를 직접 측정하기 때문이다.",
+      "감각기억의 파지기간을 정하기 위해서다."
+    ],
+    "answer": 1,
+    "explanation": "과거에는 신경을 통해 무엇이 흐르는지 여러 설명이 있었고, 이후 전기적·화학적 신호로 정리된다."
+  },
+  {
+    "id": "Q131",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "기능적 뇌영상 결과를 해석할 때 주의할 점으로 적절한 것은?",
+    "choices": [
+      "뇌영상은 신경계 연구와 무관하다.",
+      "활성화된 부위가 보인다고 해서 심리 과정 전체가 그 부위 하나에만 있다는 뜻은 아니다.",
+      "혈류 변화는 항상 심리적 의미 그 자체를 직접 보여준다.",
+      "뇌영상은 단기기억을 측정할 수 없으므로 쓰이지 않는다."
+    ],
+    "answer": 1,
+    "explanation": "뇌영상은 유용하지만 간접 지표이고, 국소성만으로 과잉해석하면 안 된다."
+  },
+  {
+    "id": "Q132",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "시냅스 이전 세포와 시냅스 이후 세포의 관계로 가장 적절한 것은?",
+    "choices": [
+      "이전 세포가 전달물질을 방출하고 이후 세포가 이를 받아 신호가 이어질 수 있다.",
+      "이전 세포는 강화계획을 결정하고 이후 세포는 기출문제를 푼다.",
+      "두 세포는 물리적으로 완전히 하나의 세포로 합쳐져 있다.",
+      "이후 세포가 항상 감각기억을 저장한다."
+    ],
+    "answer": 0,
+    "explanation": "화학적 신경전달에서는 전달물질 방출과 수용체 결합이 핵심이다."
+  },
+  {
+    "id": "Q133",
+    "chapter": "생물학적 기초",
+    "difficulty": "기출유사",
+    "question": "생물학적 기초 파트에서 ‘마음은 뇌인가?’라는 질문의 취지로 가장 적절한 것은?",
+    "choices": [
+      "모든 심리현상은 단순한 척수반사로만 설명된다는 뜻이다.",
+      "심리적 기능을 뇌와 신경계 활동의 관점에서 설명하려는 문제를 제기한다.",
+      "마음은 시험범위에서 제외된다는 뜻이다.",
+      "뇌 연구는 심리학과 무관하다는 뜻이다."
+    ],
+    "answer": 1,
+    "explanation": "이 파트는 마음과 행동을 신경계 구조와 기능, 뇌 연구 방법과 연결해 이해하려는 단원이다."
+  }
+];
+
+    const CHAPTER_ORDER = ["전체", "개관", "기억", "감각-지각", "사고", "학습", "생물학적 기초"];
+    const CIRCLES = ["①", "②", "③", "④", "⑤", "⑥"];
+    const LETTERS = ["a", "b", "c", "d", "e", "f"];
+    const KOREAN = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ"];
+    const WRONG_KEY = "psych_midterm_wrong_ids_v1";
+
+    let session = {
+      items: [],
+      index: 0,
+      score: 0,
+      answered: false,
+      selected: null,
+      answers: {},
+      exam: false,
+      remaining: 0,
+      timer: null,
+      lastConfig: null
+    };
+
+    function qs(id) { return document.getElementById(id); }
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    function getWrongSet() {
+      try {
+        return new Set(JSON.parse(localStorage.getItem(WRONG_KEY) || "[]"));
+      } catch (e) {
+        return new Set();
+      }
+    }
+    function saveWrongSet(set) {
+      localStorage.setItem(WRONG_KEY, JSON.stringify(Array.from(set)));
+      updateWrongStat();
+    }
+    function updateWrongStat() {
+      qs("wrongStat").textContent = getWrongSet().size;
+    }
+    function formatTime(sec) {
+      if (!sec && sec !== 0) return "--:--";
+      const m = Math.floor(sec / 60).toString().padStart(2, "0");
+      const s = Math.floor(sec % 60).toString().padStart(2, "0");
+      return `${m}:${s}`;
+    }
+    function stopTimer() {
+      if (session.timer) clearInterval(session.timer);
+      session.timer = null;
+    }
+    function startTimer(seconds) {
+      stopTimer();
+      session.remaining = seconds;
+      qs("timerStat").textContent = formatTime(session.remaining);
+      session.timer = setInterval(() => {
+        session.remaining -= 1;
+        qs("timerStat").textContent = formatTime(Math.max(session.remaining, 0));
+        if (session.remaining <= 0) {
+          stopTimer();
+          finishQuiz(true);
+        }
+      }, 1000);
+    }
+    function buildChapterUI() {
+      const select = qs("chapterSelect");
+      select.innerHTML = "";
+      const chapters = CHAPTER_ORDER.filter(c => c === "전체" || QUESTIONS.some(q => q.chapter === c));
+      chapters.forEach(ch => {
+        const opt = document.createElement("option");
+        opt.value = ch;
+        opt.textContent = ch;
+        select.appendChild(opt);
+      });
+      const counts = {};
+      QUESTIONS.forEach(q => counts[q.chapter] = (counts[q.chapter] || 0) + 1);
+      qs("chapterCounts").innerHTML = Object.entries(counts)
+        .map(([ch, n]) => `<div><span>${ch}</span><b>${n}문항</b></div>`)
+        .join("");
+      qs("totalCount").textContent = QUESTIONS.length;
+    }
+    function makePool(config) {
+      const chapter = config.chapter;
+      const mode = config.mode;
+      let pool = QUESTIONS.slice();
+
+      if (mode === "wrong") {
+        const wrong = getWrongSet();
+        pool = pool.filter(q => wrong.has(q.id));
+      } else if (chapter !== "전체") {
+        pool = pool.filter(q => q.chapter === chapter);
+      }
+
+      if (pool.length === 0) return [];
+
+      if (config.shuffle) pool = shuffle(pool);
+
+      if (mode === "quick10") pool = pool.slice(0, Math.min(10, pool.length));
+      if (mode === "random20") pool = pool.slice(0, Math.min(20, pool.length));
+      if (mode === "exam40") pool = shuffle(QUESTIONS).slice(0, Math.min(40, QUESTIONS.length));
+
+      return pool;
+    }
+    function startQuiz(configOverride=null) {
+      const config = configOverride || {
+        chapter: qs("chapterSelect").value,
+        mode: qs("modeSelect").value,
+        shuffle: qs("shuffleCheck").checked
+      };
+      const pool = makePool(config);
+      session.lastConfig = config;
+      stopTimer();
+
+      if (!pool.length) {
+        qs("quizArea").className = "empty";
+        qs("quizArea").innerHTML = "선택한 조건에 해당하는 문제가 없습니다. 오답노트가 비어 있을 수도 있어요.";
+        session.items = [];
+        updateStats();
+        return;
+      }
+
+      session.items = pool;
+      session.index = 0;
+      session.score = 0;
+      session.answered = false;
+      session.selected = null;
+      session.answers = {};
+      session.exam = config.mode === "exam40";
+      if (session.exam) startTimer(40 * 60);
+      else qs("timerStat").textContent = "--:--";
+      renderQuestion();
+    }
+    function updateStats() {
+      qs("scoreStat").textContent = session.score;
+      qs("progressStat").textContent = session.items.length ? `${Math.min(session.index + 1, session.items.length)}/${session.items.length}` : "0/0";
+      updateWrongStat();
+    }
+    function renderQuestion() {
+      const area = qs("quizArea");
+      area.className = "";
+      const q = session.items[session.index];
+      session.answered = Boolean(session.answers[q.id]);
+      session.selected = session.answers[q.id]?.selected ?? null;
+
+      const pct = ((session.index) / session.items.length) * 100;
+      const choiceHtml = q.choices.map((c, i) => {
+        let cls = "choice";
+        if (session.answered) {
+          if (i === q.answer) cls += " correct";
+          if (i === session.selected && i !== q.answer) cls += " wrong";
+        }
+        return `<button class="${cls}" onclick="submitChoice(${i})">
+          <span class="num">${CIRCLES[i]}</span>
+          <span>${escapeHtml(c)}</span>
+        </button>`;
+      }).join("");
+
+      area.innerHTML = `
+        <div class="meta">
+          <span class="tag blue">${q.chapter}</span>
+          <span class="tag">${q.difficulty}</span>
+          <span class="tag">${q.id}</span>
+          ${session.exam ? '<span class="tag red">실전 40문항</span>' : ''}
+        </div>
+        <div class="progressbar"><div style="width:${pct}%"></div></div>
+        <div class="question">${escapeHtml(q.question)}</div>
+        <div class="choices">${choiceHtml}</div>
+        <div class="answerBox">
+          <input id="typedAnswer" type="text" placeholder="정답 입력: 1~${q.choices.length}, a~${LETTERS[q.choices.length-1]}, ①~${CIRCLES[q.choices.length-1]}, ㄱ~${KOREAN[q.choices.length-1]}" onkeydown="if(event.key==='Enter') submitTypedAnswer()" />
+          <button class="primary" onclick="submitTypedAnswer()">입력 채점</button>
+        </div>
+        <div id="feedback" class="feedback"></div>
+        <div class="nav">
+          <button class="secondary" onclick="prevQuestion()" ${session.index === 0 ? "disabled" : ""}>이전</button>
+          <div class="btns">
+            <button class="ghost" onclick="showAnswer()">정답 보기</button>
+            <button class="primary" onclick="nextQuestion()">${session.index === session.items.length - 1 ? "결과 보기" : "다음"}</button>
+          </div>
+        </div>
+      `;
+      if (session.answered) showFeedback(false);
+      updateStats();
+    }
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+    function parseTypedAnswer(raw, max) {
+      const x = (raw || "").trim().toLowerCase();
+      if (!x) return null;
+      const n = parseInt(x, 10);
+      if (!Number.isNaN(n) && n >= 1 && n <= max) return n - 1;
+      const letterIndex = LETTERS.indexOf(x);
+      if (letterIndex >= 0 && letterIndex < max) return letterIndex;
+      const circleIndex = CIRCLES.indexOf(x);
+      if (circleIndex >= 0 && circleIndex < max) return circleIndex;
+      const krIndex = KOREAN.indexOf(x);
+      if (krIndex >= 0 && krIndex < max) return krIndex;
+      return null;
+    }
+    function submitTypedAnswer() {
+      if (session.answered) return;
+      const q = session.items[session.index];
+      const idx = parseTypedAnswer(qs("typedAnswer").value, q.choices.length);
+      if (idx === null) {
+        alert("정답은 1~" + q.choices.length + ", a~" + LETTERS[q.choices.length-1] + ", ①~" + CIRCLES[q.choices.length-1] + " 형식으로 입력해 주세요.");
+        return;
+      }
+      submitChoice(idx);
+    }
+    function submitChoice(idx) {
+      const q = session.items[session.index];
+      if (session.answered) return;
+      const correct = idx === q.answer;
+      session.answered = true;
+      session.selected = idx;
+      session.answers[q.id] = { selected: idx, correct };
+      if (correct) session.score += 1;
+
+      const wrongSet = getWrongSet();
+      if (correct) wrongSet.delete(q.id);
+      else wrongSet.add(q.id);
+      saveWrongSet(wrongSet);
+
+      renderQuestion();
+      showFeedback(true);
+    }
+    function showAnswer() {
+      const q = session.items[session.index];
+      if (!session.answered) {
+        session.answered = true;
+        session.selected = null;
+        session.answers[q.id] = { selected: null, correct: false, revealed: true };
+        const wrongSet = getWrongSet();
+        wrongSet.add(q.id);
+        saveWrongSet(wrongSet);
+        renderQuestion();
+      }
+      showFeedback(true);
+    }
+    function showFeedback(scroll=false) {
+      const q = session.items[session.index];
+      const a = session.answers[q.id];
+      const fb = qs("feedback");
+      const correct = a && a.selected === q.answer;
+      const selectedText = a?.selected === null || a?.selected === undefined ? "정답 보기 사용" : `${CIRCLES[a.selected]} ${q.choices[a.selected]}`;
+      fb.className = `feedback show ${correct ? "good" : "bad"}`;
+      fb.innerHTML = `
+        <h3>${correct ? "정답입니다." : "오답입니다."}</h3>
+        <p>내 답: <b>${escapeHtml(selectedText)}</b></p>
+        <p>정답: <span class="correctText">${CIRCLES[q.answer]} ${escapeHtml(q.choices[q.answer])}</span></p>
+        <p><b>해설:</b> ${escapeHtml(q.explanation)}</p>
+      `;
+      if (scroll) fb.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      // Re-apply classes after render
+      document.querySelectorAll(".choice").forEach((el, i) => {
+        el.classList.remove("correct", "wrong");
+        if (i === q.answer) el.classList.add("correct");
+        if (a && i === a.selected && i !== q.answer) el.classList.add("wrong");
+      });
+      const bar = document.querySelector(".progressbar > div");
+      if (bar) bar.style.width = `${((session.index + 1) / session.items.length) * 100}%`;
+      updateStats();
+    }
+    function nextQuestion() {
+      if (!session.items.length) return;
+      if (session.index >= session.items.length - 1) {
+        finishQuiz(false);
+      } else {
+        session.index += 1;
+        renderQuestion();
+      }
+    }
+    function prevQuestion() {
+      if (!session.items.length || session.index === 0) return;
+      session.index -= 1;
+      renderQuestion();
+    }
+    function finishQuiz(timeOver=false) {
+      stopTimer();
+      const total = session.items.length;
+      const answered = Object.keys(session.answers).length;
+      const score = session.score;
+      const wrongItems = session.items.filter(q => !session.answers[q.id]?.correct);
+      const byChapter = {};
+      session.items.forEach(q => {
+        if (!byChapter[q.chapter]) byChapter[q.chapter] = { total: 0, score: 0 };
+        byChapter[q.chapter].total += 1;
+        if (session.answers[q.id]?.correct) byChapter[q.chapter].score += 1;
+      });
+      const chapterHtml = Object.entries(byChapter).map(([ch, v]) =>
+        `<div><span>${ch}</span><b>${v.score}/${v.total}</b></div>`
+      ).join("");
+
+      const reviewHtml = wrongItems.length ? wrongItems.map(q => {
+        const a = session.answers[q.id];
+        const selected = a?.selected === null || a?.selected === undefined
+          ? "미응답/정답 보기"
+          : `${CIRCLES[a.selected]} ${q.choices[a.selected]}`;
+        return `<div class="reviewItem">
+          <div class="rmeta">${q.id} · ${q.chapter} · ${q.difficulty}</div>
+          <b>${escapeHtml(q.question)}</b>
+          <p>내 답: <span class="wrongText">${escapeHtml(selected)}</span></p>
+          <p>정답: <span class="correctText">${CIRCLES[q.answer]} ${escapeHtml(q.choices[q.answer])}</span></p>
+          <p><b>해설:</b> ${escapeHtml(q.explanation)}</p>
+        </div>`;
+      }).join("") : `<p class="correctText">틀린 문제가 없습니다. 이 세트는 통과입니다.</p>`;
+
+      qs("quizArea").className = "review";
+      qs("quizArea").innerHTML = `
+        <h2>${timeOver ? "시간 종료" : "퀴즈 완료"}</h2>
+        <div class="stats">
+          <div class="stat"><b>${score}/${total}</b><span>점수</span></div>
+          <div class="stat"><b>${Math.round((score / total) * 100)}%</b><span>정답률</span></div>
+          <div class="stat"><b>${answered}/${total}</b><span>응답</span></div>
+          <div class="stat"><b>${wrongItems.length}</b><span>이번 세트 오답</span></div>
+        </div>
+        <div class="chapterCounts">${chapterHtml}</div>
+        <div class="btns" style="margin:16px 0;">
+          <button class="primary" onclick="startQuiz(session.lastConfig)">같은 조건으로 다시 풀기</button>
+          <button class="secondary" onclick="document.getElementById('modeSelect').value='wrong'; startQuiz()">오답노트 풀기</button>
+        </div>
+        <h2>오답 해설</h2>
+        ${reviewHtml}
+      `;
+      updateStats();
+    }
+    function clearWrong() {
+      if (confirm("저장된 오답노트를 모두 비울까요?")) {
+        localStorage.removeItem(WRONG_KEY);
+        updateWrongStat();
+        alert("오답노트를 비웠습니다.");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      buildChapterUI();
+      updateWrongStat();
+      updateStats();
+      qs("startBtn").addEventListener("click", () => startQuiz());
+      qs("restartBtn").addEventListener("click", () => {
+        if (session.lastConfig) startQuiz(session.lastConfig);
+        else startQuiz();
+      });
+      qs("clearWrongBtn").addEventListener("click", clearWrong);
+      document.addEventListener("keydown", (e) => {
+        if (!session.items.length) return;
+        if (e.key >= "1" && e.key <= "5" && !session.answered) {
+          const q = session.items[session.index];
+          const idx = parseInt(e.key, 10) - 1;
+          if (idx < q.choices.length) submitChoice(idx);
+        }
+        if (e.key === "ArrowRight" && session.answered) nextQuestion();
+        if (e.key === "ArrowLeft") prevQuestion();
+      });
+    });
+  </script>
+</body>
+</html>
